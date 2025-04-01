@@ -1,2 +1,24 @@
 imports:
     - { resource: "app/twig_hooks/**/*.yaml" }
+
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.payment_method.create.content.form.sections.gateway_configuration.sylius_payment':
+            tId:
+                template: '@NetrisingSyliusIGFSGatewayPlugin/admin/payment_method/t_id.html.twig'
+                priority: 0
+            kSig:
+                template: '@NetrisingSyliusIGFSGatewayPlugin/admin/payment_method/k_sig.html.twig'
+                priority: 0
+            serverUrl:
+                template: '@NetrisingSyliusIGFSGatewayPlugin/admin/payment_method/server_url.html.twig'
+                priority: 0
+            trType:
+                template: '@NetrisingSyliusIGFSGatewayPlugin/admin/payment_method/tr_type.html.twig'
+                priority: 0
+            timeOut:
+                template: '@NetrisingSyliusIGFSGatewayPlugin/admin/payment_method/time_out.html.twig'
+                priority: 0
+            testMode:
+                template: '@NetrisingSyliusIGFSGatewayPlugin/admin/payment_method/test_mode.html.twig'
+                priority: 0

@@ -24,7 +24,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "sylius/sylius": "~2.0.0"
+        "sylius/sylius": "~2.0.0",
+        "vanssata/vanssata-pag-online-sdk": "dev-master",
+        "winzou/state-machine": "dev-master"
     },
     "require-dev": {
         "behat/behat": "^3.16",

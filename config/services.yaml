@@ -21,5 +21,34 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    netrising.pag_online_imprese.payment_state_applicator:
+    class: Netrising\SyliusIGFSGatewayPlugin\StateMachine\PaymentStateApplicator
+    public: true
+    arguments:
+      $smFactory: '@sm.factory'
+
+    netrising.pag_online_imprese.gataway.builder:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments:
+        - Netrising\SyliusIGFSGatewayPlugin\Payum\SyliusPagOnlineImpreseFactory
+        tags:
+        - { name: payum.gateway_factory_builder, factory: sylius_payment }
+
+    Netrising\SyliusIGFSGatewayPlugin\Form\Type\PagOnlineImpreseGatewayConfigurationType:
+        tags:
+        - { name: sylius.gateway_configuration_type, type: sylius_payment, label: "netrising_sylius_payment.gateway.name" }
+        - { name: form.type }
+
+    pag_online_imprese_bridge:
+        class: Netrising\SyliusIGFSGatewayPlugin\Bridge\PagOnlineImpreseBridge
+
+    Netrising\SyliusIGFSGatewayPlugin\Payum\Action\CaptureAction:
+        public: true
+        arguments:
+        - '@pag_online_imprese_bridge'
+        - '@doctrine.orm.entity_manager'
+        tags:
+        - { name: payum.action, factory: sylius_payment, alias: 'payum.action.capture' }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
