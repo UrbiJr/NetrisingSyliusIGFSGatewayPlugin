@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: Netrising\SyliusIGFSGatewayPlugin
+        psr4_prefix: Netrising\SyliusIGFSGatewayPlugin
